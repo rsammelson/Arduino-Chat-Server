@@ -1,0 +1,29 @@
+To do:
+Need to add way to disable authentication
+Need to add check password
+Need to add random cookie ???
+
+Add authentiation levels: admin and regular
+Add control "dashboard" for admins
+Serial control menu, same fuunctions as dashbord
+pages with user post history and user warnings
+user warnings
+user controlled user page - public access
+admin and user chats, for disscussion and notification of warnings
+cookies to notify user of warning ones (? about needing cookies)
+array of arrays of strings for user info [name, username, password, post history page content, warnings]
+upload backup of data: over intternet or to sd card o to another arduino
+
+Dashboard:
+backup
+reset
+warn
+delete post
+edit post
+(end)
+
+allow users to report posts
+allow users to edit their posts
+
+
+history and warnings could be one search page
