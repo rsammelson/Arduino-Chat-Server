@@ -6,6 +6,8 @@ void startServer () {
   Serial.write('.');
   server.on("/addmessage", handleChatAddPage);
   Serial.write('.');
+  server.on("/login", handleLogin);
+  Serial.write('.');
   server.onNotFound(handleNotFound);
   Serial.write('.');
   server.begin();
@@ -15,6 +17,7 @@ void startServer () {
 
 void handleRoot () {
   Serial.print("Request to '/':");
+  authenticate();
   String message = "<html><title>Hi</title>";
   message += "<a href=/chat>Chat</a><br>";
   message += "<a href=/addmessage>Add chat message</a></html>";
@@ -24,6 +27,8 @@ void handleRoot () {
 
 void handleNotFound () {
   Serial.print("Not found:");
+  Serial.println(Uri);
+  authenticate();
   String message = "File Not Found\n\n";
   message += "URI: ";
   String Uri = server.uri();
@@ -31,13 +36,14 @@ void handleNotFound () {
   server.send(404, "text/plain", message);
   //  Serial.println(" done");
   //  Serial.print("URI: ");
-  Serial.println(Uri);
+  Serial.println("done");
 }
 
 String chat = "";
 
 void handleChatPage () {
   Serial.print("Request to '/chat':");
+  authenticate();
   String message = "<html><title>Chat</title>";
   //  message += "<head style='font-size:72px'>Chat</head>";
   message += "<head><h1 style='font-size:40px'><span style='text-decoration: underline;'>Chat</span><br>";
@@ -58,6 +64,7 @@ void handleChatPage () {
 
 void handleChatAddPage () {
   Serial.print("Request to '/addmessage':");
+  authenticate();
 
   String n = server.arg("name");
   String s = server.arg("subject");
@@ -150,6 +157,8 @@ bool checkName (String n) {
   na.replace(" ", "");
   na.replace("  ", "");
   na.replace(".", "");
+  na.replace("_", ""); // --------------------------------------------------------------------------------------------------------------------------------------------
+  na.replace("-", ""); // add these two to simple version
   String ns = na;
   na.replace("ADMIN", "");
   na.replace("SERVER", "");
