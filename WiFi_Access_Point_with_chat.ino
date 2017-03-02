@@ -27,6 +27,13 @@ const IPAddress subnet = IPAddress(255, 255, 255, 0);
 #define serialSpeed 250000
 #define serialTimeout 25
 
+#define numUsers 2
+// {"username", "password", "name", "chatHistory", "warnings"},
+const String users[numUsers][5] = {
+  {"R", "Robby", "Robby", "", "warnings"},
+  {"A", "Aug", "Andrew", "", "warnings"}
+};
+
 // ===================================================End Configuration===================================================
 
 IPAddress ip;

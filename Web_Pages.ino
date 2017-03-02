@@ -26,12 +26,12 @@ void handleRoot () {
 }
 
 void handleNotFound () {
-  Serial.print("Not found:");
+  Serial.print("Not found: ");
+  String Uri = server.uri();
   Serial.println(Uri);
   authenticate();
   String message = "File Not Found\n\n";
   message += "URI: ";
-  String Uri = server.uri();
   message += Uri;
   server.send(404, "text/plain", message);
   //  Serial.println(" done");
@@ -143,12 +143,6 @@ void addToChat (String n, String s, String m, bool allowAdmin) {
     Serial.println("Illegal name:");
     Serial.println(n);
   }
-}
-
-String htmlFormat (String m) {
-  String htmlMessage = m;
-  htmlMessage.replace("\n", "<br>");
-  return htmlMessage;
 }
 
 bool checkName (String n) {
